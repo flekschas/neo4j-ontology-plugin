@@ -1,0 +1,27 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+version = '0.1.0'
+
+libsDirName = '../dist'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.neo4j:server-api:2.3.0'
+}
+
+jar {
+    archiveName = 'ontology.' + extension
+    manifest {
+        attributes('Main-Class': 'org.neo4j.ontology.server.plugins.Annotations',
+                   'Implementation-Title': 'Ontology',
+                   'Implementation-Version': version)
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.6'
+}
